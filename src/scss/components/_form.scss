@@ -1,0 +1,55 @@
+.form__aclaracion {
+  font-size: var(--text-sm);
+  margin: var(--space-lg) 0 var(--space-md);
+}
+
+@include breakpoint-tablet {
+  .form__row,
+  .form__row--3 {
+    display: grid;
+    gap: var(--space-lg);
+  }
+
+  .form__row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .form__row--3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.form__row--submit {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.input-group {
+  margin-bottom: var(--space-lg);
+
+  .input--text {
+    background: $white;
+    border: none;
+    box-shadow: 0px 2px 0px 0px rgba($white-88, 0.75);
+    padding: var(--space-sm);
+    outline: none;
+    width: 100%;
+    transition: all .2s ease-in-out;
+
+    &:focus,
+    &:active {
+      transform: translateY(2px);
+      box-shadow: 0px 0px 0px 0px rgba($white-88, 0.75);
+    }
+  }
+
+  .label {
+    display: inline-block;
+    line-height: var(--text-md);
+    margin: 0 0 var(--space-xs) 1px;
+    text-transform: capitalize;
+  }
+
+  &.input-group--error {
+  }
+}
