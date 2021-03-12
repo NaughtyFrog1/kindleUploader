@@ -6,8 +6,8 @@
   include_once 'includes/layout/header.php';
 ?>
 
-<main class="section container container--lg">
-  <div class="añadir">
+<div class="container container container--lg">
+  <main class="añadir section">
     <h2>Añadir un libro</h2>
 
     <form 
@@ -63,8 +63,28 @@
         >
       </div>
     </form>
-  </div>
-</main>
+  </main>
+
+  <section class="listado section">
+    <h2>Libros</h2>
+
+    <div class="input-group">
+      <input
+        class="input--text listado__buscar"
+        type="text"
+        placeholder="Buscar Libros..."
+      >
+    </div>
+
+    <div class="listado__total">
+      <div class="total__num-container">
+        <p class="total__numero shadow-text">3</p>
+      </div>
+      <p class="total__text">Libros</p>
+    </div>
+    
+  </section>
+</div>
 
 <?php
   include_once 'includes/layout/footer.php';

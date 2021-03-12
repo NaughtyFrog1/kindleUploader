@@ -1,0 +1,51 @@
+.listado {
+  @include section($white);
+
+  h2 {
+    color: $primary;
+  }
+
+  .listado__buscar {
+    border: 2px solid $white-88;
+    border-radius: 8px;
+    padding: var(--space-md);
+  
+    width: 100%;
+  }
+}
+
+.listado__total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    margin: 0;
+    font-family: $font-header;
+  }
+}
+
+.total__num-container {
+  background-color: $primary;
+  border-radius: 6px;
+  margin-right: var(--space-sm);
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.total__numero {
+  color: $white;
+  font-size: var(--text-xxxl);
+  font-weight: 700;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%);
+}
+
+.total__text {
+  color: $primary;
+  font-size: var(--text-lg);
+}
