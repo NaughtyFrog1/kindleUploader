@@ -55,6 +55,7 @@
         </div>
       </div>
       <div class="form__row--submit">
+        <a href="./" class="btn--transparent">Volver</a>
         <input 
           class="btn btn--primary btn--sm m0 input--submit"
           type="submit"
