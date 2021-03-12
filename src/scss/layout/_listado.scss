@@ -9,7 +9,6 @@
     border: 2px solid $white-88;
     border-radius: 8px;
     padding: var(--space-md);
-  
     width: 100%;
   }
 }
@@ -27,7 +26,7 @@
 
 .total__num-container {
   background-color: $primary;
-  border-radius: 6px;
+  border-radius: 8px;
   margin-right: var(--space-sm);
   position: relative;
   width: 50px;
@@ -48,4 +47,70 @@
 .total__text {
   color: $primary;
   font-size: var(--text-lg);
+}
+
+
+//* TABLE
+
+.table-container {
+  overflow-x: auto;
+  margin-top: var(--space-xl);
+  border-radius: 8px;
+  box-shadow: 
+    0px 9px 12px -6px rgba(0, 0, 0, 0.3),
+    0px 9px 48px -6px rgba(0, 0, 0, 0.15);
+}
+
+.listado__table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: Max(100%, 580px);
+
+  th,
+  td {
+    padding: var(--space-md);
+    border-bottom: 1px solid $white-76;
+  }
+
+  th {
+    background-color: $primary;
+    color: $white;
+  }
+
+  tr:nth-of-type(even) {
+    background-color: $white-94;
+  }
+
+  tr:last-of-type {
+    td {
+      border: none;
+    }
+  }
+}
+
+.table__acciones {
+  width: 120px;
+  
+  .acciones__container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .table__accion {
+    margin: 0;
+    
+    input[type="submit"],
+    img {
+      width: var(--text-lg);
+      height: var(--text-lg);
+    }
+
+    input[type="submit"] {
+      background: url('../images/icons/trash.svg');
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+  }
 }
