@@ -1,0 +1,5 @@
+.alerts--error {
+  @include section(lighten($danger, 25));
+  padding: var(--space-sm) var(--space-lg);
+  color: $danger;
+}

@@ -1,11 +1,76 @@
 <?php
   declare(strict_types = 1);
   require_once 'includes/app.php';
+  require_once 'includes/secure/db_conn.php';
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $db = conectarDB();
+    $errores = [];
+    $form = [
+      'titulo' => '',
+      'libro'  => '',
+      'nombre' => '',
+      'apellido' => '',
+    ];
+
+    $form['titulo']   = mysqli_real_escape_string($db, $_POST['titulo']);
+    $form['libro']    = $_FILES['libro'];
+    $form['nombre']   = mysqli_real_escape_string($db, $_POST['nombre']);
+    $form['apellido'] = mysqli_real_escape_string($db, $_POST['apellido']);
+
+
+    //* VALIDACIÓN DE ERRORES
+
+    foreach ($form as $key => $value) {
+      if ($value === '') {
+        $errores[] = $key;
+      }
+    }
+
+    if ($form['libro']['name'] === '') {
+      $errores[] = 'libro';
+    }
+
+
+    //* GUARDAR LIBRO
+
+    if (!$errores) {
+      if (!is_dir(DIR_LIBROS)) {
+        mkdir(DIR_LIBROS);
+      }
+
+      $nombreLibro = 
+        "{$form['titulo']} - {$form['nombre']} {$form['apellido']}." .
+        pathinfo($form['libro']['name'], PATHINFO_EXTENSION);
+
+      move_uploaded_file(
+        $form['libro']['tmp_name'],
+        DIR_LIBROS . $nombreLibro
+      );
+
+      $str_query = 
+        "INSERT INTO libros (titulo, libro, nombre, apellido) VALUES (" .
+        "'{$form['titulo']}', '{$nombreLibro}', '{$form['nombre']}', " .
+        "'{$form['apellido']}')";
+    
+      $query = mysqli_query($db, $str_query);
+
+      header('Location: /kindleUploader/index.php?status=0');
+    }
+  }
 
   $site_title = 'KindleUpdater - Crear';
   include_once 'includes/layout/header.php';
 ?>
 
+<?php if ($errores) { ?>
+  <div class="alerts--error section container container--lg">
+    <p>
+      Falta completar campo de:
+      <?php foreach($errores as $error) { echo ucfirst($error) . " "; } ?>
+    </p>
+  </div>
+<?php } ?>
 <main class="añadir section container container--lg">
     <h2>Añadir un libro</h2>
 
