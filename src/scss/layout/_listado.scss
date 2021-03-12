@@ -13,6 +13,24 @@
   }
 }
 
+.listado__header-table {
+  a {
+    text-align: center;
+    display: block;
+    margin-top: var(--space-xl);
+  }
+
+  @include breakpoint-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    a {
+      margin-top: 0;
+    }
+  }
+}
+
 .listado__total {
   display: flex;
   align-items: center;
