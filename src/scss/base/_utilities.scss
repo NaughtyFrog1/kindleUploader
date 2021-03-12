@@ -1,0 +1,61 @@
+//* CONTAINER
+
+.container {
+  margin: 0 auto;
+  width: 90%;
+
+  &.container--sm {
+    max-width: 600px;
+  }
+
+  &.container--md {
+    max-width: 800px;
+  }
+
+  &.container--lg {
+    max-width: 1200px;
+  }
+}
+
+
+//* FONT-WEIGHT
+
+@each $fw in 100, 200, 300, 400, 500, 600, 700, 800, 900 {
+  .fw--#{$fw} {
+    font-weight: $fw;
+  }
+}
+
+
+//* MARGIN
+
+.m0 {
+  margin: 0;
+}
+
+
+//* PADDING
+
+.p0 {
+  padding: 0;
+}
+
+
+//* SECTION
+
+.section {
+  margin: var(--space-xxxxl) 0;
+
+  &.container {
+    margin: var(--space-xxl) auto;
+  }
+}
+
+
+//* TEXT-ALIGN
+
+@each $ta in left, center, right {
+  .ta--#{$ta} {
+    text-align: $ta;
+  }
+}

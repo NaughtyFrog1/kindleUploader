@@ -1,0 +1,11 @@
+node_modules/
+build/
+
+# SASS
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
+# SECURE
+includes/secure/
