@@ -19,10 +19,8 @@
 
     //* VALIDACIÓN DE ERRORES
 
-    foreach ($form as $key => $value) {
-      if ($value === '') {
-        $errores[] = $key;
-      }
+    if ($form['titulo'] === '') {
+      $errores[] = 'titulo';
     }
 
     if ($form['libro']['name'] === '') {
@@ -39,10 +37,10 @@
         mkdir(DIR_LIBROS);
       }
 
-      $nombreLibro = 
-        "{$form['titulo']} - {$form['nombre']} {$form['apellido']}." .
-        $extLibro;
-
+      $nombreLibro = ($form['nombre'] && $form['apellido'])
+        ? "{$form['titulo']} - {$form['nombre']} {$form['apellido']}." . $extLibro
+        : "{$form['titulo']}.{$extLibro}"; 
+          
       move_uploaded_file(
         $form['libro']['tmp_name'],
         DIR_LIBROS . $nombreLibro
@@ -60,7 +58,7 @@
 
     mysqli_close($db);
   }
-  
+
   $site_title = 'KindleUpdater - Crear';
   include_once 'includes/layout/header.php';
 ?>
@@ -110,7 +108,10 @@
           type="file"
         >
       </div>
-      <p class="form__aclaracion">Sobre el autor</p>
+      <p class="form__aclaracion">
+        Sobre el autor
+        <span class="libro__formato">(no es obligatorio)</span>
+      </p>
       <div class="form__row">
         <div class="input-group">
           <label class="label" for="nombre">nombre</label>
