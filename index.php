@@ -12,7 +12,27 @@
 
   $query = mysqli_query($db, "SELECT * FROM libros");
 
-  
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = filter_var($_POST['id'], FILTER_VALIDATE_INT);
+
+    if ($id) {
+      // Borrar libro
+      $libro = mysqli_fetch_assoc(mysqli_query(
+        $db, "SELECT libro FROM libros WHERE id = {$id}"
+      ));
+      unlink(DIR_LIBROS . $libro['libro']);
+
+      // Borrar libro de la base de datos
+      $borrar = mysqli_query(
+        $db, "DELETE FROM libros WHERE id = {$id}"
+      );
+
+      if ($borrar) {
+        header('Location: ./');
+      }
+    }
+  }
+
   $site_title = 'KindleUpdater';
   include_once 'includes/layout/header.php';
 ?>
