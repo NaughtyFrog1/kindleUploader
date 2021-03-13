@@ -95,6 +95,7 @@
           name="titulo" 
           placeholder="Título del libro"
           type="text"
+          value="<?= $form['titulo'] ?>"
         >
       </div>
       <div class="input-group">
@@ -118,6 +119,7 @@
             name="nombre" 
             placeholder="Nombre del autor"
             type="text"
+            value="<?= $form['nombre'] ?>"
           >
         </div>
         <div class="input-group">
@@ -127,6 +129,7 @@
             name="apellido" 
             placeholder="Apellido del autor"
             type="text"
+            value="<?= $form['apellido'] ?>"
           >
         </div>
       </div>
