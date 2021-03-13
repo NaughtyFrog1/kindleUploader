@@ -7,16 +7,6 @@
 ?>
 
 <section class="listado section container container--lg">
-  <h2>Libros</h2>
-
-  <div class="input-group">
-    <input
-      class="input--text listado__buscar"
-      type="text"
-      placeholder="Buscar Libros..."
-    >
-  </div>
-
   <div class="listado__header-table">
     <div class="listado__total">
       <div class="total__num-container">

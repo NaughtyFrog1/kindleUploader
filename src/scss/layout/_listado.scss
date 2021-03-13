@@ -1,16 +1,5 @@
 .listado {
   @include section($white);
-
-  h2 {
-    color: $primary;
-  }
-
-  .listado__buscar {
-    border: 2px solid $white-88;
-    border-radius: 8px;
-    padding: var(--space-md);
-    width: 100%;
-  }
 }
 
 .listado__header-table {
