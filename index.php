@@ -16,9 +16,15 @@
   include_once 'includes/layout/header.php';
 ?>
 
-<?php if ($_GET['status'] === 0) { ?>
+<?php if ($_GET['status'] === '0') { ?>
   <div class="alerts--success section container container--lg">
     <p class="ta--center">Se añadió "<?= $_GET['libro'] ?>"</p>
+  </div>
+<?php } ?>
+
+<?php if ($_GET['status'] === '10') { ?>
+  <div class="alerts--error section container container--lg">
+    <p class="ta--center">El libro elegido para editar no existe</p>
   </div>
 <?php } ?>
 
