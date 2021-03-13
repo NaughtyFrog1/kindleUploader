@@ -8,16 +8,11 @@
     $errores = [];
     $extErronea = false;
     $form = [
-      'titulo' => '',
-      'libro'  => '',
-      'nombre' => '',
-      'apellido' => '',
+      'titulo' => mysqli_real_escape_string($db, $_POST['titulo']),
+      'libro'  => $_FILES['libro'],
+      'nombre' => mysqli_real_escape_string($db, $_POST['nombre']),
+      'apellido' => mysqli_real_escape_string($db, $_POST['apellido']),
     ];
-
-    $form['titulo']   = mysqli_real_escape_string($db, $_POST['titulo']);
-    $form['libro']    = $_FILES['libro'];
-    $form['nombre']   = mysqli_real_escape_string($db, $_POST['nombre']);
-    $form['apellido'] = mysqli_real_escape_string($db, $_POST['apellido']);
 
     $extLibro = pathinfo($form['libro']['name'], PATHINFO_EXTENSION);
 
