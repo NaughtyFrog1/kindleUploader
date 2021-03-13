@@ -2,6 +2,7 @@
   declare(strict_types = 1);
   require_once 'includes/app.php';
   require_once 'includes/secure/db_conn.php';
+  require_once 'includes/functions.php';
 
   $db = conectarDB();
 
@@ -16,17 +17,17 @@
   include_once 'includes/layout/header.php';
 ?>
 
-<?php if ($_GET['status'] === '0') { ?>
-  <div class="alerts--success section container container--lg">
-    <p class="ta--center">Se añadió "<?= $_GET['libro'] ?>"</p>
-  </div>
-<?php } ?>
+<?php if ($_GET['status'] === '0') { 
+  crearAlerta('success', "Se añadió '{$_GET['libro']}'");  
+} ?>
 
-<?php if ($_GET['status'] === '10') { ?>
-  <div class="alerts--error section container container--lg">
-    <p class="ta--center">El libro elegido para editar no existe</p>
-  </div>
-<?php } ?>
+<?php if ($_GET['status'] === '1') { 
+  crearAlerta('success', "Se editó '{$_GET['libro']}'");  
+} ?>
+
+<?php if ($_GET['status'] === '10') { 
+  crearAlerta('error', "El libro elegido para editar no existe");  
+} ?>
 
 <section class="listado section container container--lg">
   <div class="listado__header-table">
