@@ -57,10 +57,10 @@
 
       header("Location: index.php?status=0&libro={$form['titulo']}");
     }
+
+    mysqli_close($db);
   }
   
-  mysqli_close($db);
-
   $site_title = 'KindleUpdater - Crear';
   include_once 'includes/layout/header.php';
 ?>
