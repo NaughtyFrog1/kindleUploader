@@ -30,10 +30,8 @@
 
     //* VALIDACIÓN DE ERRORES
 
-    foreach ($form as $key => $value) {
-      if ($value === '') {
-        $errores[] = $key;
-      }
+    if ($form['titulo'] === '') {
+      $errores[] = 'titulo';
     }
 
     if ($extLibro !== 'mobi') {
@@ -48,9 +46,9 @@
         mkdir(DIR_LIBROS);
       }
 
-      $nombreLibro = 
-        "{$form['titulo']} - {$form['nombre']} {$form['apellido']}." .
-        $extLibro;
+      $nombreLibro = ($form['nombre'] && $form['apellido'])
+        ? "{$form['titulo']} - {$form['nombre']} {$form['apellido']}.{$extLibro}" 
+        : "{$form['titulo']}.{$extLibro}"; 
 
       // Si se agrego un nuevo libro; eliminar libro anterior y agregar nuevo
       if ($form['libro']['name'] !== '') {
