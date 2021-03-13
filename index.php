@@ -1,7 +1,17 @@
 <?php
   declare(strict_types = 1);
   require_once 'includes/app.php';
+  require_once 'includes/secure/db_conn.php';
 
+  $db = conectarDB();
+
+  $count = mysqli_fetch_assoc(
+    mysqli_query($db, "SELECT COUNT(id) AS total FROM libros")
+  );
+
+  $query = mysqli_query($db, "SELECT * FROM libros");
+
+  
   $site_title = 'KindleUpdater';
   include_once 'includes/layout/header.php';
 ?>
@@ -16,7 +26,9 @@
   <div class="listado__header-table">
     <div class="listado__total">
       <div class="total__num-container">
-        <p class="total__numero shadow-text">3</p>
+        <p class="total__numero shadow-text">
+          <?= $count['total'] ?>
+        </p>
       </div>
       <p class="total__text">Libros</p>
     </div>
@@ -33,41 +45,43 @@
         <th class="shadow-text">Acciones</th>
       </thead>
       <tbody>
-        <tr>
-          <td>Metro 2033</td>
-          <td>El ruso ese</td>
-          <td class="table__acciones">
-            <div class="acciones__container">
-              <a 
-                class="table__accion"
-                href="#" 
-              >
-                <img 
-                  src="src/assets/images/icons/pen.svg" 
-                  alt="Actualizar"
+        <?php while ($libro = mysqli_fetch_assoc($query)) { ?>
+          <tr>
+            <td><?= $libro['titulo'] ?></td>
+            <td><?= $libro['nombre'] . " " . $libro['apellido'] ?></td>
+            <td class="table__acciones">
+              <div class="acciones__container">
+                <a 
+                  class="table__accion"
+                  href="editar.php?id=<?= $libro['id'] ?>" 
                 >
-              </a>
-              <a 
-                class="table__accion"
-                href="libros/El Retrato de Dorian Gray - Oscar Wilde.mobi" 
-                download="El Retrato de Dorian Gray - Oscar Wilde.mobi"
-              >
-                <img 
-                  src="src/assets/images/icons/download.svg" 
-                  alt="Download"
+                  <img 
+                    src="src/assets/images/icons/pen.svg" 
+                    alt="Actualizar"
+                  >
+                </a>
+                <a 
+                  class="table__accion"
+                  href="libros/<?= $libro['libro'] ?>" 
+                  download="<?= $libro['libro'] ?>"
                 >
-              </a>
-              <form class="table__accion" method="post">
-                <input
-                  name="id"
-                  type="hidden"
-                  value="#"
-                >
-                <input type="submit" value=''>
-              </form>
-            </div>
-          </td>
-        </tr>
+                  <img 
+                    src="src/assets/images/icons/download.svg" 
+                    alt="Download"
+                  >
+                </a>
+                <form class="table__accion" method="post">
+                  <input
+                    name="id"
+                    type="hidden"
+                    value="<?= $libro['id'] ?>"
+                  >
+                  <input type="submit" value=''>
+                </form>
+              </div>
+            </td>
+          </tr>
+        <?php } ?>
       </tbody>
     </table>
   </div>
