@@ -13,24 +13,19 @@
 
   $libro = mysqli_fetch_assoc($query);
 
-  var_dump($libro);
-
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $errores = [];
     $extErronea = false;
     $form = [
-      'titulo' => '',
-      'libro'  => '',
-      'nombre' => '',
-      'apellido' => '',
+      'titulo' => mysqli_real_escape_string($db, $_POST['titulo']),
+      'libro'  => $_FILES['libro'],
+      'nombre' => mysqli_real_escape_string($db, $_POST['nombre']),
+      'apellido' => mysqli_real_escape_string($db, $_POST['apellido']),
     ];
 
-    $form['titulo']   = mysqli_real_escape_string($db, $_POST['titulo']);
-    $form['libro']    = $_FILES['libro'];
-    $form['nombre']   = mysqli_real_escape_string($db, $_POST['nombre']);
-    $form['apellido'] = mysqli_real_escape_string($db, $_POST['apellido']);
-
-    $extLibro = pathinfo($form['libro']['name'], PATHINFO_EXTENSION);
+    $extLibro = ($form['libro']['name']) 
+      ? pathinfo($form['libro']['name'], PATHINFO_EXTENSION)
+      : pathinfo($libro['libro'], PATHINFO_EXTENSION);
 
 
     //* VALIDACIÓN DE ERRORES
@@ -41,9 +36,7 @@
       }
     }
 
-    if ($form['libro']['name'] === '') {
-      $errores[] = 'libro';
-    } else if ($extLibro !== 'mobi') {
+    if ($extLibro !== 'mobi') {
       $extErronea = true; 
     }
 
@@ -59,16 +52,26 @@
         "{$form['titulo']} - {$form['nombre']} {$form['apellido']}." .
         $extLibro;
 
-      move_uploaded_file(
-        $form['libro']['tmp_name'],
-        DIR_LIBROS . $nombreLibro
-      );
+      // Si se agrego un nuevo libro; eliminar libro anterior y agregar nuevo
+      if ($form['libro']['name'] !== '') {
+        unlink(DIR_LIBROS . $libro['libro']);
+
+        move_uploaded_file(
+          $form['libro']['tmp_name'],
+          DIR_LIBROS . $nombreLibro
+        );
+      } else {
+        // Cambiar nombre libro para coincidir con los cambios
+        rename(DIR_LIBROS . $libro['libro'], DIR_LIBROS . $nombreLibro);
+      }
 
       $str_query = 
-        "INSERT INTO libros (titulo, libro, nombre, apellido) VALUES (" .
-        "'{$form['titulo']}', '{$nombreLibro}', '{$form['nombre']}', " .
-        "'{$form['apellido']}')";
-    
+        "UPDATE libros SET " .
+        "titulo = '{$form["titulo"]}', " .
+        "libro  = '{$nombreLibro}', " .
+        "nombre = '{$form["nombre"]}', " .
+        "apellido = '{$form["apellido"]}' " .
+        "WHERE id = {$idValidar}";
       $query = mysqli_query($db, $str_query);
 
       header("Location: index.php?status=1&libro={$form['titulo']}");
@@ -94,7 +97,7 @@
 <?php } ?>
 
 <main class="añadir section container container--lg">
-    <h2>Añadir un libro</h2>
+    <h2>Editar libro</h2>
 
     <form 
       action=""
@@ -152,7 +155,7 @@
         <input 
           class="btn btn--primary btn--sm m0 input--submit"
           type="submit"
-          value="Añadir" 
+          value="Editar" 
         >
       </div>
     </form>
