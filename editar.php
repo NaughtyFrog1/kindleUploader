@@ -78,7 +78,9 @@
     }
   }
 
-  $site_title = 'KindleUpdater - Crear';
+  mysqli_close($db);
+
+  $site_title = 'KindleUpdater - Editar';
   include_once 'includes/layout/header.php';
 ?>
 

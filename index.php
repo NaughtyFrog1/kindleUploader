@@ -33,6 +33,8 @@
     }
   }
 
+  mysqli_close($db);
+
   $site_title = 'KindleUpdater';
   include_once 'includes/layout/header.php';
 ?>
