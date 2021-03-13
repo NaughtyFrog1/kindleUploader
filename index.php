@@ -6,6 +6,12 @@
   include_once 'includes/layout/header.php';
 ?>
 
+<?php if ($_GET['status'] === 0) { ?>
+  <div class="alerts--success section container container--lg">
+    <p class="ta--center">Se añadió "<?= $_GET['libro'] ?>"</p>
+  </div>
+<?php } ?>
+
 <section class="listado section container container--lg">
   <div class="listado__header-table">
     <div class="listado__total">

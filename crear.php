@@ -60,7 +60,7 @@
     
       $query = mysqli_query($db, $str_query);
 
-      header('Location: /kindleUploader/index.php?status=0');
+      header("Location: index.php?status=0&libro={$form['titulo']}");
     }
   }
 
@@ -71,13 +71,13 @@
 <?php if ($errores || $extErronea) { ?>
   <div class="alerts--error section container container--lg">
     <?php if($errores) { ?>
-      <p>
+      <p class="ta--center">
         Falta completar campo de:
         <?php foreach($errores as $error) { echo ucfirst($error) . " "; } ?>
       </p>
     <?php } ?>
     <?php if($extErronea) { ?>
-      <p>El archivo debe ser .mobi</p>
+      <p class="ta--center">El archivo debe ser .mobi</p>
     <?php } ?>
   </div>
 <?php } ?>
@@ -103,7 +103,6 @@
       <div class="input-group">
         <label for="libro" class="label">libro</label>
         <input 
-          accept=".mobi"
           class="input--text"
           name="libro"
           type="file"
