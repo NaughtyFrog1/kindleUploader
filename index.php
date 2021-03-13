@@ -41,79 +41,14 @@
                   alt="Actualizar"
                 >
               </a>
-              <form class="table__accion" method="post">
-                <input
-                  name="id"
-                  type="hidden"
-                  value="#"
-                >
-                <input type="submit" value=''>
-              </form>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Metro 2033</td>
-          <td>El ruso ese</td>
-          <td class="table__acciones">
-            <div class="acciones__container">
               <a 
                 class="table__accion"
-                href="#" 
+                href="libros/El Retrato de Dorian Gray - Oscar Wilde.mobi" 
+                download="El Retrato de Dorian Gray - Oscar Wilde.mobi"
               >
                 <img 
-                  src="src/assets/images/icons/pen.svg" 
-                  alt="Actualizar"
-                >
-              </a>
-              <form class="table__accion" method="post">
-                <input
-                  name="id"
-                  type="hidden"
-                  value="#"
-                >
-                <input type="submit" value=''>
-              </form>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Metro 2033</td>
-          <td>El ruso ese</td>
-          <td class="table__acciones">
-            <div class="acciones__container">
-              <a 
-                class="table__accion"
-                href="#" 
-              >
-                <img 
-                  src="src/assets/images/icons/pen.svg" 
-                  alt="Actualizar"
-                >
-              </a>
-              <form class="table__accion" method="post">
-                <input
-                  name="id"
-                  type="hidden"
-                  value="#"
-                >
-                <input type="submit" value=''>
-              </form>
-            </div>
-          </td>
-        </tr>
-        <tr>
-          <td>Metro 2033</td>
-          <td>El ruso ese</td>
-          <td class="table__acciones">
-            <div class="acciones__container">
-              <a 
-                class="table__accion"
-                href="#" 
-              >
-                <img 
-                  src="src/assets/images/icons/pen.svg" 
-                  alt="Actualizar"
+                  src="src/assets/images/icons/download.svg" 
+                  alt="Download"
                 >
               </a>
               <form class="table__accion" method="post">
