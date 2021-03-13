@@ -6,6 +6,7 @@
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $db = conectarDB();
     $errores = [];
+    $extErronea = false;
     $form = [
       'titulo' => '',
       'libro'  => '',
@@ -18,6 +19,8 @@
     $form['nombre']   = mysqli_real_escape_string($db, $_POST['nombre']);
     $form['apellido'] = mysqli_real_escape_string($db, $_POST['apellido']);
 
+    $extLibro = pathinfo($form['libro']['name'], PATHINFO_EXTENSION);
+
 
     //* VALIDACIÓN DE ERRORES
 
@@ -29,19 +32,21 @@
 
     if ($form['libro']['name'] === '') {
       $errores[] = 'libro';
+    } else if ($extLibro !== 'mobi') {
+      $extErronea = true; 
     }
 
 
     //* GUARDAR LIBRO
 
-    if (!$errores) {
+    if (!($errores || $extErronea)) {
       if (!is_dir(DIR_LIBROS)) {
         mkdir(DIR_LIBROS);
       }
 
       $nombreLibro = 
         "{$form['titulo']} - {$form['nombre']} {$form['apellido']}." .
-        pathinfo($form['libro']['name'], PATHINFO_EXTENSION);
+        $extLibro;
 
       move_uploaded_file(
         $form['libro']['tmp_name'],
@@ -63,14 +68,20 @@
   include_once 'includes/layout/header.php';
 ?>
 
-<?php if ($errores) { ?>
+<?php if ($errores || $extErronea) { ?>
   <div class="alerts--error section container container--lg">
-    <p>
-      Falta completar campo de:
-      <?php foreach($errores as $error) { echo ucfirst($error) . " "; } ?>
-    </p>
+    <?php if($errores) { ?>
+      <p>
+        Falta completar campo de:
+        <?php foreach($errores as $error) { echo ucfirst($error) . " "; } ?>
+      </p>
+    <?php } ?>
+    <?php if($extErronea) { ?>
+      <p>El archivo debe ser .mobi</p>
+    <?php } ?>
   </div>
 <?php } ?>
+
 <main class="añadir section container container--lg">
     <h2>Añadir un libro</h2>
 
