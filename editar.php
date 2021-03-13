@@ -122,7 +122,8 @@
           libro 
           <span class="libro__formato">.mobi</span>
         </label>
-        <input 
+        <input
+          accept=".mobi"
           class="input--text"
           name="libro"
           type="file"
