@@ -50,7 +50,10 @@
     margin: 0 0 var(--space-xs) 1px;
     text-transform: capitalize;
   }
+}
 
-  &.input-group--error {
-  }
+.libro__formato {
+  font-size: var(--text-xs);
+  font-style: italic;
+  text-transform: lowercase;
 }

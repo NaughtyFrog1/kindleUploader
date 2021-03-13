@@ -101,7 +101,10 @@
         >
       </div>
       <div class="input-group">
-        <label for="libro" class="label">libro</label>
+        <label for="libro" class="label">
+          libro 
+          <span class="libro__formato">.mobi</span>
+        </label>
         <input 
           class="input--text"
           name="libro"
