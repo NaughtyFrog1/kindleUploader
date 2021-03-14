@@ -1,0 +1,17 @@
+.alerts--error {
+  @include section(lighten($danger, 25));
+  padding: var(--space-sm) var(--space-lg);
+  color: $danger;
+}
+
+.alerts--success {
+  @include section(lighten($success, 50));
+  padding: var(--space-sm) var(--space-lg);
+  color: $success;
+}
+
+.alerts--fixed {
+  position: fixed;
+  top: var(--space-lg);
+  right: var(--space-lg);
+}

@@ -1,0 +1,127 @@
+.listado {
+  @include section($white);
+}
+
+.listado__header-table {
+  a {
+    text-align: center;
+    display: block;
+    margin-top: var(--space-xl);
+  }
+
+  @include breakpoint-mobile {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    a {
+      margin-top: 0;
+    }
+  }
+}
+
+.listado__total {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  p {
+    margin: 0;
+    font-family: $font-header;
+  }
+}
+
+.total__num-container {
+  background-color: $primary;
+  border-radius: 8px;
+  margin-right: var(--space-sm);
+  position: relative;
+  width: 50px;
+  height: 50px;
+}
+
+.total__numero {
+  color: $white;
+  font-size: var(--text-xxxl);
+  font-weight: 700;
+  line-height: 1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -48%);
+}
+
+.total__text {
+  color: $primary;
+  font-size: var(--text-lg);
+}
+
+
+//* TABLE
+
+.table-container {
+  overflow-x: auto;
+  margin-top: var(--space-xl);
+  border-radius: 8px;
+  box-shadow: 
+    0px 1px 1px 0px rgba(0, 0, 0, 0.15);
+}
+
+.listado__table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: Max(100%, 580px);
+
+  th,
+  td {
+    padding: var(--space-md);
+    border-bottom: 1px solid $white-76;
+  }
+
+  th {
+    background-color: $primary;
+    color: $white;
+  }
+
+  tr:nth-of-type(even) {
+    background-color: $white-94;
+  }
+
+  tr:last-of-type {
+    td {
+      border: none;
+    }
+  }
+}
+
+.table__acciones {
+  width: 150px;
+  
+  .acciones__container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+
+  .table__accion {
+    margin: 0;
+    
+    input[type="submit"],
+    img {
+      width: var(--text-lg);
+      height: var(--text-lg);
+      transition: transform .2s ease-in-out;
+
+      &:hover {
+        transform: translateY(-2px);
+      }
+    }
+
+    input[type="submit"] {
+      background: url('../images/icons/trash.svg');
+      border: none;
+      cursor: pointer;
+      padding: 0;
+    }
+  }
+}

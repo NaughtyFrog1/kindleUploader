@@ -8,8 +8,8 @@ $desktop: 1200px;
 
 //* FONTS
 
-$font: Arial, Helvetica, sans-serif;
-$font-header: 'Segoe UI', Tahoma, Verdana, sans-serif;
+$font: 'Open Sans', sans-serif;
+$font-header: 'Poppins', sans-serif;
 
 
 //* COLORS
@@ -24,6 +24,14 @@ $white-94: hsl(0, 0%,  94%);
 $white-88: hsl(0, 0%,  88%);
 $white-82: hsl(0, 0%,  82%);
 $white-76: hsl(0, 0%,  76%);
+
+$primary--light: #d0395c;
+$primary:        #c2185b;
+$primary--dark:  #9c0a45;
+
+$secondary--light: #f5c842;
+$secondary:        #ffc107;
+$secondary--dark:  #d17a00;
 
 $success: #198754;
 $danger:  #dc3545;

@@ -29,3 +29,24 @@
     @content;
   }
 }
+
+@mixin section($color) {
+  background-color: $color;
+  border-radius: 12px;
+  box-shadow: 
+    0px 12px 12px -6px rgba(0, 0, 0, 0.3),
+    0px 12px 48px -6px rgba(0, 0, 0, 0.15);
+  padding: var(--space-xxl) 3vw;
+
+  h2 {
+    font-size: var(--text-lg);
+    font-weight: 400;
+    margin: 0 0 var(--space-md);   
+  }
+
+  @include breakpoint-mobile() {
+    h2 {
+      font-size: var(--text-xl);
+    }
+  }
+}
