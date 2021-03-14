@@ -126,9 +126,12 @@
           name="libro"
           type="file"
         >
-        <p>Libro actual: <?= $libro['libro'] ?></p>
+        <p><em>Libro actual:</em> <?= $libro['libro'] ?></p>
       </div>
-      <p class="form__aclaracion">Sobre el autor</p>
+      <p class="form__aclaracion">
+        Sobre el autor
+        <span class="libro__formato">(no es obligatorio)</span>
+      </p>
       <div class="form__row">
         <div class="input-group">
           <label class="label" for="nombre">nombre</label>
