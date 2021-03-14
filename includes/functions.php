@@ -4,7 +4,7 @@
 ?>
 
 <?php function crearAlerta(string $type, string $msg ) { ?>
-  <div class="alerts--<?= $type ?> section container container--lg">
+  <div class="alerts--<?= $type ?> alerts--fixed">
     <p class="ta--center"><?= $msg ?></p>
   </div>
 <?php } ?>

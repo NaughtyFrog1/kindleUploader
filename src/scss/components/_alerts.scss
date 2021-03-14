@@ -9,3 +9,9 @@
   padding: var(--space-sm) var(--space-lg);
   color: $success;
 }
+
+.alerts--fixed {
+  position: fixed;
+  top: var(--space-lg);
+  right: var(--space-lg);
+}
