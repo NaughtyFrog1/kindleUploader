@@ -13,9 +13,11 @@
 
   $libro = mysqli_fetch_assoc($query);
 
+  $errores = [];
+  $extErronea = false;
+
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $errores = [];
-    $extErronea = false;
+
     $form = [
       'titulo' => mysqli_real_escape_string($db, $_POST['titulo']),
       'libro'  => $_FILES['libro'],

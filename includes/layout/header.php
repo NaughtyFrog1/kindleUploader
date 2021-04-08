@@ -16,7 +16,7 @@
   >
   <link rel="stylesheet" href="<?= ROOT_DIR ?>build/css/main.min.css">
 </head>
-<body <?= ($site_id ? "id='{$site_id}'" : '') ?> >
+<body <?= isset($site_id) ? "id='{$site_id}'" : '' ?> >
 
 <header class="site-header">
   <h1 class="m0 shadow-text">KindleUploader</h1>

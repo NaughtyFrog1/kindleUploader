@@ -3,10 +3,12 @@
   require_once 'includes/app.php';
   require_once 'includes/secure/db_conn.php';
 
+  $errores = [];
+  $extErronea = false;
+  $form = [];
+
   if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $db = conectarDB();
-    $errores = [];
-    $extErronea = false;
     $form = [
       'titulo' => mysqli_real_escape_string($db, $_POST['titulo']),
       'libro'  => $_FILES['libro'],
@@ -93,7 +95,7 @@
           name="titulo" 
           placeholder="Título del libro"
           type="text"
-          value="<?= $form['titulo'] ?>"
+          value="<?= $form['titulo'] ?? '' ?>"
         >
       </div>
       <div class="input-group">
@@ -120,7 +122,7 @@
             name="nombre" 
             placeholder="Nombre del autor"
             type="text"
-            value="<?= $form['nombre'] ?>"
+            value="<?= $form['nombre'] ?? '' ?>"
           >
         </div>
         <div class="input-group">
@@ -130,7 +132,7 @@
             name="apellido" 
             placeholder="Apellido del autor"
             type="text"
-            value="<?= $form['apellido'] ?>"
+            value="<?= $form['apellido'] ?? '' ?>"
           >
         </div>
       </div>
